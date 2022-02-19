@@ -1,0 +1,29 @@
+version: "3.9"
+   
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: 'my-app-db'
+       MYSQL_USER: 'gcd-django'
+       MYSQL_PASSWORD: 'db-gcd'
+       MYSQL_ROOT_PASSWORD: 'root-password'
+  web:
+    build: .
+    command: ./wait.sh #python gcd-django-beta/manage.py runserver 0.0.0.0:8000
+      # entrypoint: ["./wait.sh"]
+    volumes:
+      - .:/gcd-django
+    ports:
+      - "8000:8000"
+    environment:
+      - MYSQL_DATABASE=my-app-db
+      - MYSQL_USER=gcd-django
+      - MYSQL_PASSWORD=db-gcd
+      - MYSQL_ROOT_PASSWORD=root-password 
+    depends_on:
+      - db
+
+
