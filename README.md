@@ -10,10 +10,9 @@ After cloning this repo into a directory, follow these steps:
 
 This will result in a running website without any data.
 
-This will give you a shell `docker exec -it gcd-django-docker_web_1 bash`
-
 To import data, login to the GCD and download a (current) dump from https://www.comics.org/download/.
 
 After unzipping the dump, run the following with the name of the 'current_dump':  
 `docker exec -i gcd-django-docker_db_1 mysql -u gcd-django my-gcd-db -p'db-gcd' < 'current_dump'`
 
+This will give you a shell `docker exec -it gcd-django-docker_web_1 bash`, to e.g. locally edit files.
