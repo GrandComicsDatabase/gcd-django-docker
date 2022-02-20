@@ -8,10 +8,12 @@ DATABASES = {
         'PASSWORD': environ.get('MYSQL_PASSWORD'),
         'HOST': 'db',
         'PORT': 3306,
+        'ATOMIC_REQUESTS': True,
     }
 }
 
-SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error', 'models.E025']
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error', 'models.E025',
+                          'fields.W903']
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
@@ -19,3 +21,5 @@ ALLOWED_HOSTS = [
     '.comics.org.',  # Allow FQDN and subdomains.  Can be dropped in 1.7
 ]
 
+def _modify(settings):
+    settings['INSTALLED_APPS'] += ('django_extensions',)
