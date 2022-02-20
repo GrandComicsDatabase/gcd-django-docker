@@ -27,3 +27,5 @@ If doing development work on the code for editing, note that right now you canno
 
 To allow approvals to work, the statistics need to exist, for that run the following:  
 `docker-compose run web python gcd-django/manage.py runscript reset_stats`
+
+This setup so far does not support elasticsearch, i.e., the regular search. For that we likely need two more containers, one for elasticsearch, and (maybe) one for reddis.
