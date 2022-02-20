@@ -20,3 +20,8 @@ Do load users into the system, use
 The three development users are (passwords in ()): `admin (admin)`, `editor (editme)`, and `dexter_1234 (test)`.
 
 This get a shell use `docker exec -it gcd-django-docker_web_1 bash`, e.g. to locally edit files. After changing into `gcd-django` you can get a django shell with `python manage.py shell`.
+
+If doing development work on the code for editing, note that right now you cannot edit existing data, since we do not export the change history in the dump. But, you can add new data (with dexter_1234), approve it (with editor), and then edit the newly added data. We might can add a changesets for the existing data to allow their editing in this development setup.
+
+To allow approvals to work, the statistics need to exist, for that run the following:  
+`docker-compose run web python gcd-django/manage.py runscript reset_stats`
