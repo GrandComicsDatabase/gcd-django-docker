@@ -15,7 +15,9 @@ To import data, login to the GCD and download a (current) dump from https://www.
 After unzipping the dump, run the following with the name of the 'current_dump':  
 `docker exec -i gcd-django-docker_db_1 mysql -u gcd-django my-gcd-db -p'db-gcd' < 'current_dump'`
 
-Do load users into the system, use  
+To view the website, access `http://0.0.0.0:8000/`.
+
+To load users into the system, use  
 `docker-compose run web python gcd-django/manage.py loaddata gcd-django/apps/indexer/fixtures/users.yaml`  
 The three development users are (passwords in ()): `admin (admin)`, `editor (editme)`, and `dexter_1234 (test)`.
 
