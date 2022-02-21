@@ -5,15 +5,18 @@ This uses Docker and Docker Compose, which need to be installed first.
 After cloning this repo into a directory, follow these steps:
 
 1. build images - `docker-compose build`
-1. start services in detached mode, or not use -d to see the logs - `docker-compose up -d`
+1. start services, or use -d in detached mode to see the logs - `docker-compose up`
 1. run migrations - `docker-compose run web /usr/local/bin/python gcd-django/manage.py migrate`
 
+On the first run the mysql-setup needs time, it needs to finish to have the db present before you can run migrate. The migrate also takes quite some minutes.
+
 This will result in a running website without any data.
+You can check the names of your containers with `docker-compose images`.
 
 To import data, login to the GCD and download a (current) dump from https://www.comics.org/download/.
 
 After unzipping the dump, run the following with the name of the 'current_dump':  
-`docker exec -i gcd-django-docker_db_1 mysql -u gcd-django my-gcd-db -p'db-gcd' < 'current_dump'`
+`docker exec -i gcd-django-docker_db_1 mysql -u gcd-django my-gcd-db -p'db-gcd' < 'current_dump'`  
 
 To view the website, access http://0.0.0.0:8000/.
 
