@@ -16,6 +16,7 @@ SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error', 'models.E025',
                           'fields.W903']
 
 ALLOWED_HOSTS = [
+    'localhost',
     '0.0.0.0',
     '.comics.org',
     '.comics.org.',  # Allow FQDN and subdomains.  Can be dropped in 1.7

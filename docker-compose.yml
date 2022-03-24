@@ -10,10 +10,11 @@ services:
        MYSQL_USER: 'gcd-django'
        MYSQL_PASSWORD: 'db-gcd'
        MYSQL_ROOT_PASSWORD: 'root-password'
+    volumes:
+      - db:/var/lib/mysql
   web:
     build: .
-    command: ./wait.sh #python gcd-django-beta/manage.py runserver 0.0.0.0:8000
-      # entrypoint: ["./wait.sh"]
+    command: ./wait.sh
     volumes:
       - .:/gcd-django
     ports:
@@ -25,5 +26,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root-password 
     depends_on:
       - db
-
+volumes:
+  db:
+    driver: local
 
