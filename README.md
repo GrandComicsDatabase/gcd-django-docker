@@ -20,9 +20,9 @@ After unzipping the dump, run the following with the name of the 'current_dump':
 
 To view the website, access http://0.0.0.0:8000/.
 
-To load users into the system, first run the migrations again:
+To load users into the system, first run the migrations again:  
  `docker-compose run web /usr/local/bin/python gcd-django/manage.py migrate`
-(note that we currently don't know why the migration needs to be done again) and then use 
+(note that we currently don't know why the migration needs to be done again) and then use  
 `docker-compose run web python gcd-django/manage.py loaddata gcd-django/apps/indexer/fixtures/users.yaml`  
 The three development users are (passwords in ()): `admin (admin)`, `editor (editme)`, and `dexter_1234 (test)`.
 
