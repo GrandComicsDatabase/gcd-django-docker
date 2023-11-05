@@ -28,7 +28,14 @@ The three development users are (passwords in ()): `admin (admin)`, `editor (edi
 
 To get a shell use `docker exec -it 'web_container_name' bash`, e.g. to locally edit files. After changing into `gcd-django` you can get a django shell with `python manage.py shell`.
 
-If doing development work on the code for editing, note that right now you cannot edit existing data, since we do not export the change history in the dump. But, you can add new data (with dexter_1234), approve it (with editor), and then edit the newly added data. We intend to add a changesets for the existing data to allow their editing in this development setup.
+If doing development work on the code for editing, note that right now you cannot edit existing data, since we do not export the change history in the dump. But, you can add new data (with dexter_1234), approve it (with editor), and then edit the newly added data. 
+
+We intend to add changesets for all the existing data to allow their editing in this development setup. As of now we support this for some object types. For that call:  
+`export DJANGO_SETTINGS_MODULE=settings`  
+`export PYTHONPATH=gcd-django`  
+`python setup_initial_changesets.py`  
+
+Doing this for all objects will take some time, so we limit it in the code to the first 500 IDs per object class. You can comment out objects that for now do not need to be edited in your dev environment, or change the limit, by editing the python-file.
 
 To allow approvals to work, the statistics need to exist, for that run the following:  
 `docker-compose run web python gcd-django/manage.py runscript reset_stats`
