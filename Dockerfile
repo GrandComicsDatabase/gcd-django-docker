@@ -6,7 +6,9 @@ ENV PYTHONUNBUFFERED=1
 RUN mkdir /code
 WORKDIR /code
 # install external packages
-RUN apt-get update && apt-get install -y netcat && apt-get install -y vim
+RUN apt-get update && apt-get install -y netcat-traditional && apt-get install -y vim
+# there seem to be two netcat-packages now, either should work
+# RUN apt-get update && apt-get install -y netcat && apt-get install -y vim
 # install GCD code and python packages
 ADD https://api.github.com/repos/GrandComicsDatabase/gcd-django/git/refs/heads/master version.json
 RUN git clone https://github.com/GrandComicsDatabase/gcd-django.git
