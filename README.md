@@ -16,7 +16,7 @@ Check the names of your containers with `docker-compose images`, one is for the 
 To import data, login to the GCD and download a (current) dump from https://www.comics.org/download/.
 
 After unzipping the dump, run the following with the name of the 'current_dump':  
-`docker exec -i 'db_container_name' mysql -u gcd-django my-gcd-db -p'db-gcd' < 'current_dump'`
+`docker exec -i 'db_container_name' mysql -u gcd-django my-gcd-db -pdb-gcd < 'current_dump'`
 
 To view the website, access http://0.0.0.0:8000/.
 
