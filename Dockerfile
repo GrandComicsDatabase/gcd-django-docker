@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3
+FROM python:3.11
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 # Set work directory
@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y netcat-traditional && apt-get install -
 ADD https://api.github.com/repos/GrandComicsDatabase/gcd-django/git/refs/heads/master version.json
 RUN git clone https://github.com/GrandComicsDatabase/gcd-django.git
 RUN cp /code/gcd-django/requirements.txt /code
+RUN sed -i "s/.iterator()/.iterator(chunk_size=1000)/" /code/gcd-django/apps/oi/migrations/0007_populate_previous_revision.py
+RUN sed -i "s/.iterator()/.iterator(chunk_size=1000)/" /code/gcd-django/apps/oi/migrations/0008_populate_previous_revision_story.py
 RUN pip install -r requirements.txt
 COPY ./settings_local.py /code/gcd-django/
 COPY . /code/
