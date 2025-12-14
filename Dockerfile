@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y netcat-traditional && apt-get install -
 # there seem to be two netcat-packages now, either should work
 # RUN apt-get update && apt-get install -y netcat && apt-get install -y vim
 # install GCD code and python packages
-ADD https://api.github.com/repos/GrandComicsDatabase/gcd-django/git/refs/heads/master version.json
-RUN git clone https://github.com/GrandComicsDatabase/gcd-django.git
+ADD https://api.github.com/repos/GrandComicsDatabase/gcd-django/git/refs/heads/beta version.json
+RUN git clone -b beta https://github.com/GrandComicsDatabase/gcd-django.git
 RUN cp /code/gcd-django/requirements.txt /code
 RUN sed -i "s/.iterator()/.iterator(chunk_size=1000)/" /code/gcd-django/apps/oi/migrations/0007_populate_previous_revision.py
 RUN sed -i "s/.iterator()/.iterator(chunk_size=1000)/" /code/gcd-django/apps/oi/migrations/0008_populate_previous_revision_story.py
