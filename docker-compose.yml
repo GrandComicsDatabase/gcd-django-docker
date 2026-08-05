@@ -10,7 +10,7 @@ services:
       retries: 30
       start_period: 30s
     ports:
-      - '3308:3308'
+      - '3308:3306'  # host:container; MySQL listens on port 3306 in the container
     environment:
        MYSQL_DATABASE: 'my-gcd-db'
        MYSQL_USER: 'gcd-django'
